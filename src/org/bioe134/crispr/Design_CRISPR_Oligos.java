@@ -22,7 +22,7 @@ public class Design_CRISPR_Oligos {
         String oligo1 = cds.substring(oligo1_index+2, oligo1_index+22);
         int oligo2_index = cds.indexOf(pam, oligo1_index+2);
         String oligo2 = cds.substring(oligo2_index+2, oligo2_index+22);
-        
+
         Pair<String,String> out = new Pair<>(oligo1, oligo2);
         return out;
     }
