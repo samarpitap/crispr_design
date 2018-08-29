@@ -17,13 +17,18 @@ public class Design_CRISPR_Oligos {
     public Pair<String,String> run(String cds) throws Exception {
         
         //TODO:  write this algorithm, put the oligo sequences in line below
+        String pam = "GG";
+        int oligo1_index = cds.indexOf(pam);
+        String oligo1 = cds.substring(oligo1_index+2, oligo1_index+22);
+        int oligo2_index = cds.indexOf(pam, oligo1_index+2);
+        String oligo2 = cds.substring(oligo2_index+2, oligo2_index+22);
         
-        Pair<String,String> out = new Pair<>("oligo1_here", "oligo2_here");
+        Pair<String,String> out = new Pair<>(oligo1, oligo2);
         return out;
     }
     
     public static void main(String[] args) throws Exception {
-        //Create some exampole arguments, here the amilGFP coding sequence
+        //Create some example arguments, here the amilGFP coding sequence
         String cds = "ATGTCTTATTCAAAGCATGGCATCGTACAAGAAATGAAGACGAAATACCATATGGAAGGCAGTGTCAATGGCCATGAATTTACGATCGAAGGTGTAGGAACTGGGTACCCTTACGAAGGGAAACAGATGTCCGAATTAGTGATCATCAAGCCTGCGGGAAAACCCCTTCCATTCTCCTTTGACATACTGTCATCAGTCTTTCAATATGGAAACCGTTGCTTCACAAAGTACCCGGCAGACATGCCTGACTATTTCAAGCAAGCATTCCCAGATGGAATGTCATATGAAAGGTCATTTCTATTTGAGGATGGAGCAGTTGCTACAGCCAGCTGGAACATTCGACTCGAAGGAAATTGCTTCATCCACAAATCCATCTTTCATGGCGTAAACTTTCCCGCTGATGGACCCGTAATGAAAAAGAAGACCATTGACTGGGATAAGTCCTTCGAAAAAATGACTGTGTCTAAAGAGGTGCTAAGAGGTGACGTGACTATGTTTCTTATGCTCGAAGGAGGTGGTTCTCACAGATGCCAATTTCACTCCACTTACAAAACAGAGAAGCCGGTCACACTGCCCCCGAATCATGTCGTAGAACATCAAATTGTGAGGACCGACCTTGGCCAAAGTGCAAAAGGCTTTACAGTCAAGCTGGAAGCACATGCCGCGGCTCATGTTAACCCTTTGAAGGTTAAATAA";
         
         //Instantiate and initiate the Function
