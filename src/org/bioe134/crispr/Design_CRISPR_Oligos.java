@@ -4,7 +4,7 @@ import javafx.util.Pair;
 
 /**
  *
- * @author J. Christopher Anderson
+ * @author J. Christopher Anderson, Samarpita Patra
  */
 public class Design_CRISPR_Oligos {
     
@@ -20,19 +20,18 @@ public class Design_CRISPR_Oligos {
         String pam = "GG";
         String SpeI = "ACTAGT";
         String guideScaff = "gttttagagctagaaatagcaag".toUpperCase();
+        String oligo1, oligo2;
 
         cds = cds.toUpperCase();
 
         int oligo1_index = cds.indexOf(pam, 21);
-        String oligo1 = SpeI + cds.substring(oligo1_index-21, oligo1_index-1) + guideScaff;
-        String oligo2 = SpeI + "attatacctaggactgagctag".toUpperCase();
+        if (oligo1_index != -1) {
+            oligo1 = "ccata".toUpperCase()+ SpeI + cds.substring(oligo1_index-21, oligo1_index-1) + guideScaff;
+            oligo2 = "ctcag".toUpperCase() + SpeI + "attatacctaggactgagctag".toUpperCase();
+        } else {
+            throw new Exception("Coding sequence has no NGG sequence or is too small for Cas9");
+        }
 
-//        System.out.println(oligo1.length()-SpeI.length()-guideScaff.length());
-
-//        int oligo1_index = cds.indexOf(pam);
-//        String oligo1 = cds.substring(oligo1_index+2, oligo1_index+22);
-//        int oligo2_index = cds.indexOf(pam, oligo1_index+2);
-//        String oligo2 = cds.substring(oligo2_index+2, oligo2_index+22);
 
         Pair<String,String> out = new Pair<>(oligo1, oligo2);
         return out;
@@ -41,7 +40,7 @@ public class Design_CRISPR_Oligos {
     public static void main(String[] args) throws Exception {
         //Create some example arguments, here the amilGFP coding sequence
         String cds = "ATGTCTTATTCAAAGCATGGCATCGTACAAGAAATGAAGACGAAATACCATATGGAAGGCAGTGTCAATGGCCATGAATTTACGATCGAAGGTGTAGGAACTGGGTACCCTTACGAAGGGAAACAGATGTCCGAATTAGTGATCATCAAGCCTGCGGGAAAACCCCTTCCATTCTCCTTTGACATACTGTCATCAGTCTTTCAATATGGAAACCGTTGCTTCACAAAGTACCCGGCAGACATGCCTGACTATTTCAAGCAAGCATTCCCAGATGGAATGTCATATGAAAGGTCATTTCTATTTGAGGATGGAGCAGTTGCTACAGCCAGCTGGAACATTCGACTCGAAGGAAATTGCTTCATCCACAAATCCATCTTTCATGGCGTAAACTTTCCCGCTGATGGACCCGTAATGAAAAAGAAGACCATTGACTGGGATAAGTCCTTCGAAAAAATGACTGTGTCTAAAGAGGTGCTAAGAGGTGACGTGACTATGTTTCTTATGCTCGAAGGAGGTGGTTCTCACAGATGCCAATTTCACTCCACTTACAAAACAGAGAAGCCGGTCACACTGCCCCCGAATCATGTCGTAGAACATCAAATTGTGAGGACCGACCTTGGCCAAAGTGCAAAAGGCTTTACAGTCAAGCTGGAAGCACATGCCGCGGCTCATGTTAACCCTTTGAAGGTTAAATAA";
-        
+
         //Instantiate and initiate the Function
         Design_CRISPR_Oligos func = new Design_CRISPR_Oligos();
         func.initiate();
